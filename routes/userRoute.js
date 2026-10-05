@@ -1,16 +1,25 @@
 import express from "express";
-import { fetch,createUser,update,deleteUser } from "../controller/userController.js";
 
-const route = express.Router();
+import {
+    registerUser,
+    loginUser
+} from "../controller/userController.js";
+
+import verifyToken from "../middleware/authMiddleware.js";
+
+const router = express.Router();
 
 
-route.get("/getAllUsers", fetch);
-route.post("/create", createUser);
-route.put("/update/:id", update);
+router.post("/register", registerUser);
+router.post("/login", loginUser);
 
-route.delete("/test", (req, res) => {
-    res.send("DELETE is working");
+
+
+router.get("/verify", verifyToken, (req,res)=>{
+    res.status(200).json({
+        message:"Access granted",
+        user:req.user
+    });
 });
 
-route.delete("/delete/:id", deleteUser);
-export default route;
+export default router;

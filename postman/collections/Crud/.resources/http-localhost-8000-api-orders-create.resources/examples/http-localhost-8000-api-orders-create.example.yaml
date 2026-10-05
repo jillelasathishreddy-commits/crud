@@ -1,0 +1,32 @@
+$kind: http-example
+name: http://localhost:8000/api/orders/create
+description: ""
+request:
+  url: http://localhost:8000/api/orders/create
+  method: POST
+  body:
+    type: json
+    content: "{\r
+
+      \     \r
+
+      \    \"customerName\": \"kalyani\",\r
+
+      \    \"mobileName\": \"iqooZ10x\",\r
+
+      \    \"address\": \"kanigiri\",\r
+
+      \    \"cost\": 24000,\r
+
+      \    \"quantity\": 1\r
+
+      \  \r
+
+      }\r\n"
+response:
+  statusCode: 200
+  statusText: ""
+  body:
+    type: json
+    content: ""
+order: 1785332302994

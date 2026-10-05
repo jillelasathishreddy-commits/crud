@@ -1,0 +1,26 @@
+$kind: http-request
+name: register
+description: ""
+url: http://localhost:8000/api/users/register
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \    \"name\": \"chinthakay\",\r
+
+    \    \"email\": \"raviteja@gmail.com\",\r
+
+    \    \"password\": \"13455\",\r
+
+    \    \"age\": 22,\r
+
+    \    \"phone\": \"9876543210\"\r
+
+    }"
+settings:
+  strictSSL: false
+  followRedirects: true
+  disableCookies: false
+  maxResponseSize: 52428800
+order: 1902450264362511

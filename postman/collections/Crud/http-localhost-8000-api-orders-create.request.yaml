@@ -1,0 +1,31 @@
+$kind: http-request
+name: http://localhost:8000/api/orders/create
+description: ""
+url: http://localhost:8000/api/orders/create
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \     \r
+
+    \    \"customerName\": \"kalyani\",\r
+
+    \    \"mobileName\": \"iqooZ10x\",\r
+
+    \    \"address\": \"kanigiri\",\r
+
+    \    \"cost\": 24000,\r
+
+    \    \"quantity\": 1\r
+
+    \  \r
+
+    }\r\n"
+settings:
+  strictSSL: false
+  followRedirects: true
+  disableCookies: false
+  maxResponseSize: 52428800
+examples: .resources/http-localhost-8000-api-orders-create.resources/examples
+order: 1000

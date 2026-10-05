@@ -1,24 +1,44 @@
-import express from "express"
-import mongoose from "mongoose"
-import bodyparser from "body-parser"
-import dotenv from "dotenv"
-import routes from "./routes/userRoute.js"
+import dns from "node:dns";
+
+dns.setDefaultResultOrder("ipv4first");
+
+import express from "express";
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+import bodyParser from "body-parser";
+import cors from "cors";
+
+import userRoute from "./routes/userRoute.js";
+import productRoutes from "./routes/productRoutes.js";
+import categoryRoutes from "./routes/categoryRoutes.js";
+import cartRoutes from "./routes/cartRoutes.js";
+import orderRoutes from "./routes/orderRoutes.js";
+import mutualFundRoutes from "./routes/mutualFundRoutes.js";
+
+dotenv.config();
 
 const app = express();
 
-app.use(bodyparser.json());
-dotenv.config();
-const PORT = process.env.PORT || 8000;
-const MONGO_URL = process.env.MONGO_URL;
+app.use(bodyParser.json());
+app.use(express.json());
+app.use(cors());
 
-mongoose.connect(MONGO_URL)
+app.use("/api/users", userRoute);
+app.use("/api/products", productRoutes);
+app.use("/api/categories", categoryRoutes);
+app.use("/api/cart", cartRoutes);
+app.use("/api/orders", orderRoutes);
+app.use("/api/mutual-funds", mutualFundRoutes);
+
+mongoose
+  .connect(process.env.MONGO_URL)
   .then(() => {
-    console.log('Connected to database');
-    app.listen(PORT, () => {
-      console.log(`Server is running on port ${PORT}`);
+    console.log(" yes MongoDB Connected successfully");
+
+    app.listen(process.env.PORT || 8000, () => {
+      console.log("Server Running on  my port 8000");
     });
   })
-  .catch((error) => {
-    console.error("Error connecting to database:", error);
+  .catch((err) => {
+    console.log(err);
   });
-  app.use("/api/user", routes);
